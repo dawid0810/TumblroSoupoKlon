@@ -1,0 +1,25 @@
+<%= form_for @post do |f| %>
+  <% if @post.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title, "Title" %><br>
+    <%= f.text_field :title %>
+  </div>
+  <%= f.fields_for :images do |builder| %>
+    <div class="field">
+      <%= render 'image_fields', f: builder %>
+    </div>
+  <% end %>
+  <%= f.fields_for :notes do |builder| %>
+    <%= render 'note_fields', f: builder %>
+  <% end %>
+  <%= render 'add_fields', f: f %>
+<% end %>
