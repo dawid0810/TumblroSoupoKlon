@@ -13,13 +13,19 @@
     <%= f.label :title, "Title" %><br>
     <%= f.text_field :title %>
   </div>
-  <%= f.fields_for :images do |builder| %>
-    <div class="field">
-      <%= render 'image_fields', f: builder %>
-    </div>
-  <% end %>
-  <%= f.fields_for :notes do |builder| %>
-    <%= render 'note_fields', f: builder %>
-  <% end %>
+    <% order_stuff(@post).each do |s| %>
+        <% if s["type"] == "Note" %>
+            <%= f.fields_for :notes, s["object"] do |f2| %>
+            <%= render "note_fields", f: f2 %>
+            <% end %>
+        <% elsif s["type"] == "Image" %>
+            <%= f.fields_for :images, s["object"] do |f2| %>
+                <div class="field">
+                  <%= render 'image_fields', f: f2 %>
+                </div>
+            <% end %>
+        <% end %>
+        <br>
+    <% end %>
   <%= render 'add_fields', f: f %>
 <% end %>

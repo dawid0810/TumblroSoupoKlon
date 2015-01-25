@@ -1,18 +1,17 @@
 <h1>Showing post #<%= @post.id %></h1>
 <h2><%= @post.title %></h2>
-<% @post.images.each do |image| %>
-  <%= image_tag image.file.url(:medium) %>
-<% end %>
-<table>
-  <thead>
-    <th>Body</th>
-  </thead>
-  <tbody>
-    <% @post.notes.order(:id).each do |note| %>
-      <tr>
-        <td><%= note.body %></td>
-      </tr>
+
+<%= form_for @post do |f| %>
+<% order_stuff(@post).each do |s| %>
+    <% if s["type"] == "Note" %>
+        <%= s["object"]["body"] %>
+        <%#= f.fields_for :notes, s["object"] do |f2| %>
+          <%#= render "note_fields", f: f2 %>
+        <%# end %>
+    <% elsif s["type"] == "Image" %>
+        <%= image_tag s["object"].file.url(:medium) %>
     <% end %>
-  </tbody>
-</table>
+    <br>
+<% end %>
 <%= link_to 'Edit', edit_post_path(@post) %>
+<% end%>

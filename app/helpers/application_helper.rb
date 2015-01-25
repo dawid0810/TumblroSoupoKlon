@@ -7,4 +7,17 @@ module ApplicationHelper
     end
     link_to(name, '#', class: 'add_fields', data: {id: id, fields: fields.gsub('\n', '')})
   end
+
+  def order_stuff(post)
+    stuff = []
+    post.notes.each do |n|
+      tmp = { "type" => "Note", "object" => n}
+      stuff << tmp
+    end
+    post.images.each do |i|
+      tmp = { "type" => "Image", "object" => i}
+      stuff << tmp
+    end
+    stuff.sort { |x, y| x["object"]["order"] <=> y["object"]["order"] }
+  end
 end

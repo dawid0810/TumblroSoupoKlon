@@ -55,7 +55,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :post_id, :notes_attributes => [:id, :body, :_destroy], :images_attributes => [:id, :file, :_destroy, :upload_file_name, :upload_content_type, :tempfile])
+      params.require(:post).permit(:title, :post_id, :notes_attributes => [:id, :body, :_destroy, :order], :images_attributes => [:id, :file, :_destroy, :upload_file_name, :upload_content_type, :tempfile, :order])
     end
 
     def require_permission

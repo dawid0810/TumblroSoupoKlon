@@ -13,7 +13,8 @@ jQuery ->
     event.preventDefault()
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
-    $(this).before($(this).data('fields').replace(regexp, time))
+    $(".actions").before($(this).data('fields').replace(regexp, time))
+    $("[id$=" + time.toString() + "_order]").val(time)
 
   $('form').on 'click', '.undo_remove', (evenet) ->
     event.preventDefault()
