@@ -1,7 +1,17 @@
 <%= link_to "Removed. Undo", '#', class: "undo_remove" %>
 <fieldset>
-  <%= f.label :file, "Image" %><br>
-  <%= f.file_field :file %>
+  <div class="field">
+    <%= f.label :file, "Image" %>
+    <%= f.file_field :file %>
+  </div>
+  <div class="field">
+    <%= f.label :source, "Source" %>
+    <%= f.text_field :source %>
+  </div>
+  <div class="field">
+    <%= f.label :caption, "Caption" %>
+    <%= f.text_field :caption %>
+  </div>
   <%= f.hidden_field :_destroy %>
   <%= link_to "Remove this file", '#', class: "remove_fields" %>
   <%= f.hidden_field :order%>

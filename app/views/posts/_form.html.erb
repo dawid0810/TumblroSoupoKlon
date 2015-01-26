@@ -20,9 +20,7 @@
       <% end %>
     <% elsif s.kind_of?(Image) %>
       <%= f.fields_for :images, s do |f2| %>
-        <div class="field">
-          <%= render 'image_fields', f: f2 %>
-        </div>
+        <%= render 'image_fields', f: f2 %>
       <% end %>
     <% end %>
     <br>

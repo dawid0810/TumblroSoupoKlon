@@ -22,8 +22,8 @@ module ApplicationHelper
   def show(stuff)
     rendered = ""
     stuff.each do |s|
-      rendered += render("show_" + s.class.name.downcase, s: s)
+      rendered += render("posts/show_" + s.class.name.downcase, s: s)
     end
-    rendered
+    rendered.html_safe
   end
 end

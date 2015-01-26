@@ -1,6 +1,6 @@
 <h1>Showing post #<%= @post.id %></h1>
 <h2><%= @post.title %></h2>
 
-<%= show(order_stuff(@post)).html_safe %>
+<%= show(order_stuff(@post)) %>
 
 <%= link_to 'Edit', edit_post_path(@post) %>
