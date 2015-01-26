@@ -1,17 +1,6 @@
 <h1>Showing post #<%= @post.id %></h1>
 <h2><%= @post.title %></h2>
 
-<%= form_for @post do |f| %>
-<% order_stuff(@post).each do |s| %>
-    <% if s["type"] == "Note" %>
-        <%= s["object"]["body"] %>
-        <%#= f.fields_for :notes, s["object"] do |f2| %>
-          <%#= render "note_fields", f: f2 %>
-        <%# end %>
-    <% elsif s["type"] == "Image" %>
-        <%= image_tag s["object"].file.url(:medium) %>
-    <% end %>
-    <br>
-<% end %>
+<%= show(order_stuff(@post)).html_safe %>
+
 <%= link_to 'Edit', edit_post_path(@post) %>
-<% end%>

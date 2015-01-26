@@ -11,13 +11,19 @@ module ApplicationHelper
   def order_stuff(post)
     stuff = []
     post.notes.each do |n|
-      tmp = { "type" => "Note", "object" => n}
-      stuff << tmp
+      stuff << n
     end
     post.images.each do |i|
-      tmp = { "type" => "Image", "object" => i}
-      stuff << tmp
+      stuff << i
     end
-    stuff.sort { |x, y| x["object"]["order"] <=> y["object"]["order"] }
+    stuff.sort { |x, y| x["order"] <=> y["order"] }
+  end
+
+  def show(stuff)
+    rendered = ""
+    stuff.each do |s|
+      rendered += render("show_" + s.class.name.downcase, s: s)
+    end
+    rendered
   end
 end
