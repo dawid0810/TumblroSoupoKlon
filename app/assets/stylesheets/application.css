@@ -43,3 +43,10 @@ body {
 .undo_remove {
     display: none;
 }
+
+div.upload_fields {
+    display: inline;
+}
+div.copy_from_url_fields {
+    display: none;
+}

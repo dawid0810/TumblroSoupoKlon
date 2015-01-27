@@ -1,14 +1,24 @@
 <%= link_to "Removed. Undo", '#', class: "undo_remove" %>
 <fieldset>
-  <div class="field">
-    <%= f.label :file, "Image" %>
-    <%= f.file_field :file %>
+  <div class="upload_fields">
+    <div class="field">
+      Upload file or <%= link_to "copy from url", '#', class: "copy_from_url" %>
+      <%= f.file_field :file %>
+    </div>
+    <%= link_to "+source", "#", class: "add_source_or_caption" %>
+    <div class="field" style="display: none">
+      <%= f.label :source, "Source" %>
+      <%= f.text_field :source %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :source, "Source" %>
-    <%= f.text_field :source %>
+  <div class="copy_from_url_fields">
+    <div class="field">
+      <%= f.label :url, "Url" %>
+      <%= f.url_field :url %>
+    </div>
   </div>
-  <div class="field">
+  <%= link_to "+caption", "#", class: "add_source_or_caption" %>
+  <div class="field" style="display: none">
     <%= f.label :caption, "Caption" %>
     <%= f.text_field :caption %>
   </div>

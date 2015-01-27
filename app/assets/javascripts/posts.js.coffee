@@ -16,8 +16,19 @@ jQuery ->
     $(".actions").before($(this).data('fields').replace(regexp, time))
     $("[id$=" + time.toString() + "_order]").val(time)
 
-  $('form').on 'click', '.undo_remove', (evenet) ->
+  $('form').on 'click', '.undo_remove', (event) ->
     event.preventDefault()
     $(this).next('fieldset').children('input[type=hidden]').val('false')
     $(this).next('fieldset').show()
     $(this).hide()
+
+  $('form').on 'click', '.add_source_or_caption', (event) ->
+    event.preventDefault()
+    $(this).next('div.field').show()
+    $(this).hide()
+
+  $('form').on 'click', '.copy_from_url', (event) ->
+    event.preventDefault()
+    $(this).next('input[type=file]').val("")
+    $('.upload_fields').hide()
+    $('.copy_from_url_fields').show()

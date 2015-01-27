@@ -6,4 +6,14 @@ class Image < ActiveRecord::Base
 
   has_attached_file :file, styles: { medium: "500x500>" }
   validates_attachment_content_type :file, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
+  def url
+  end
+
+  def url=(u)
+    if u.blank? == false
+      self.file = open(u)
+      self.source = u
+    end
+  end
 end

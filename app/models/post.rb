@@ -6,5 +6,5 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   accepts_nested_attributes_for :notes, reject_if: proc { |n| n[:body].blank? }, allow_destroy: true
-  accepts_nested_attributes_for :images, reject_if: proc { |n| n[:file].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :images, reject_if: proc { |n| n[:file].blank? && n[:url].blank? }, allow_destroy: true
 end
