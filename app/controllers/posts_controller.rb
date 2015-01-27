@@ -17,12 +17,11 @@ class PostsController < ApplicationController
   def repost
     post_to_dup = Post.find(params[:id])
     @post = post_to_dup.deep_clone :include => [ :notes, :images ] do |original, kopy|
-      filename = Rails.root.join('public', 'system', 'images', 'files', original.id.to_s.rjust(9, '0').scan(/.../).join('/'), 'medium', kopy.file_file_name) if kopy.is_a?(Image)
-      kopy.file = File.new filename if kopy.is_a?(Image) and File.exists? filename
+      filename = Rails.root.join('public', 'system', 'images', 'files', original.id.to_s.rjust(9, '0').scan(/.../).join('/'), 'original', kopy.file_file_name) if kopy.is_a?(Image)
+      kopy.file = File.new filename if kopy.is_a?(Image) and File.exists?(filename)
     end
     @post.post_id = post_to_dup.id
     @post.save
-    # redirect_to @post
   end
 
   def edit

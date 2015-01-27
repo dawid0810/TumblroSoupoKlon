@@ -16,11 +16,11 @@
   <% order_stuff(@post).each do |s| %>
     <% if s.kind_of?(Note) %>
       <%= f.fields_for :notes, s do |f2| %>
-      <%= render "note_fields", f: f2 %>
+      <%= render "notes/fields", f: f2 %>
       <% end %>
     <% elsif s.kind_of?(Image) %>
       <%= f.fields_for :images, s do |f2| %>
-        <%= render 'image_fields', f: f2 %>
+        <%= render 'images/fields', f: f2 %>
       <% end %>
     <% end %>
     <br>

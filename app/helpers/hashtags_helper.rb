@@ -8,10 +8,6 @@ module HashtagsHelper
   end
 
   def render_hashtaggable(hashtaggable)
-    # klass        = hashtaggable.class.to_s.underscore
-    # view_dirname = klass.pluralize
-    # partial      = klass
-    # render "#{view_dirname}/#{partial}", {klass.to_sym => hashtaggable}
     show(order_stuff(Post.find(hashtaggable.post_id)))
   end
 end
