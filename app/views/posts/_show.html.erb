@@ -1,5 +1,6 @@
 <div class="post">
   <h2><%= p.title %></h2>
+  <%= User.find(p.user_id).username %><br>
 
   <%= show(order_stuff(p)) %>
 

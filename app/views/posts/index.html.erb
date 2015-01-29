@@ -1,5 +1,8 @@
 <%= link_to 'New', new_post_path %><br>
-
-<% @posts.order(id: :desc).each do |post| %>
-  <%= render "posts/show", p: post %>
+<% if @posts %>
+  <% @posts.order(id: :desc).each do |post| %>
+    <%= render "posts/show", p: post %>
+  <% end %>
+<% else %>
+  No posts.
 <% end %>
