@@ -1,5 +1,5 @@
 <%= link_to 'New', new_post_path %><br>
 
-<% @posts.each do |post| %>
+<% @posts.order(id: :desc).each do |post| %>
   <%= render "posts/show", p: post %>
 <% end %>
