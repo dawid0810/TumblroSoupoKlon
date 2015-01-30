@@ -26,4 +26,38 @@ module ApplicationHelper
     end
     rendered.html_safe
   end
+
+  def get_username
+    username = "Guest"
+    username = current_user.username if current_user
+    username
+  end
+
+  def get_username_with_caret
+    get_username + " <b class='caret'></b>"
+  end
+
+  def get_login_logout_link
+    link = link_to('Login', new_user_session_path)
+    link = link_to('Logout', destroy_user_session_path, :method => :delete) if current_user
+    link
+  end
+
+  def get_profile_link
+    link = link_to('Register', new_user_registration_path)
+    link = link_to('Profile', '/user/' + current_user.username) if current_user
+    link
+  end
+
+  def get_followed_link
+    link = link_to('Followed', new_user_registration_path)
+    link = link_to('Followed', '/followed') if current_user
+    link
+  end
+
+  def get_followers_link
+    link = link_to('Followers', new_user_registration_path)
+    link = link_to('Followers', '/followers') if current_user
+    link
+  end
 end

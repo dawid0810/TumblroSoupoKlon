@@ -2,23 +2,53 @@
 <html>
 <head>
   <title>TumblroSoupoKlon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="top_bar">
-  <span id="top_logo">TumblroSoupoKlon</span>
-  <span id="top_nav">
-    Hello
-    <% if user_signed_in? %>
-        <%= current_user.username %>! <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-    <% else %>
-        guest! <%= link_to('Login', new_user_session_path)  %>
-    <% end %>
-  </span>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">TumblroSoupoKlon</a>
+    </div>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav">
+        <li id="li-everyone">
+          <%= link_to 'Everyone', '/everyone' %>
+        </li>
+        <li id="li-followed">
+          <%= get_followed_link %>
+        </li>
+        <li id="li-followers">
+          <%= get_followers_link %>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <%= link_to get_username_with_caret.html_safe, '#',  data: { toggle: "dropdown" } %>
+          <ul class="dropdown-menu">
+            <li>
+              <%= get_profile_link %>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <%= get_login_logout_link %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
+
+
 <div class="container">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
