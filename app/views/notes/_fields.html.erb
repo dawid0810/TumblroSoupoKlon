@@ -1,7 +1,6 @@
 <%= link_to "Removed. Undo", '#', class: "undo_remove" %>
 <fieldset>
-  <%= f.label :body, "Note" %><br>
-  <%= f.text_area :body %>
+  <%= f.text_area :body, hide_label: :true, placeholder: "Note" %>
   <%= f.hidden_field :_destroy %>
   <%= link_to "Remove this note", '#', class: "remove_fields" %>
   <%= f.hidden_field :order%>
