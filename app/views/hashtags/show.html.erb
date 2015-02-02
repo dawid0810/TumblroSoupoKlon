@@ -1,9 +1,20 @@
-<h1><%= params[:hashtag] %></h1>
-<% if @hashtagged %>
-  <% @hashtagged.each do |hashtagged| %>
-    <h2><%= Post.find(hashtagged.post_id).title %></h2>
-    <%= render_hashtaggable hashtagged %>
-  <% end -%>
-<% else -%>
-  <p>There is no match for the <em><%= params[:hashtag] %></em> hashtag.</p>
-<% end -%>
+<div class="row">
+  <div class="col-lg-8">
+    <h2>#<%= params[:hashtag] %></h2>
+    <% if @hashtagged %>
+      <% @hashtagged.each do |hashtagged| %>
+        <h3><%= Post.find(hashtagged.post_id).title %></h3>
+        <%= render_hashtaggable hashtagged %>
+      <% end -%>
+    <% else -%>
+      <p>There is no match for the <em><%= params[:hashtag] %></em> hashtag.</p>
+    <% end -%>
+  </div>
+  <div class="col-lg-4">
+    <div class="affix">
+      <% @hashtags.each do |hashtag| %>
+        <%= link_to hashtag.name, hashtag_path(hashtag.name) %>
+      <% end -%>
+    </div>
+  </div>
+</div>

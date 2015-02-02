@@ -1,16 +1,25 @@
-<% if @user %>
-    <h1>Followers of <%= @user.username %></h1>
+<div class="row">
+  <div class="col-lg-8">
+    <% if @user %>
+      <h2>Followers of <%= @user.username %></h2>
 
-    <% if @posts %>
+      <% if @posts %>
         <% @posts.order(id: :desc).each do |post| %>
-            <%= render "posts/show", p: post %>
+          <%= render "posts/show", p: post %>
         <% end %>
-    <% else %>
+      <% else %>
         No posts.
+      <% end %>
+    <% else %>
+      <h2>Sorry, user does not exist.</h2>
     <% end %>
-<% else %>
-    <h1>Sorry, user does not exist.</h1>
-<% end %>
+  </div>
+  <div class="col-lg-4">
+    <div class="affix">
+      <%= link_to 'New', new_post_path %><br>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
     setActive("li-followers");
 </script>

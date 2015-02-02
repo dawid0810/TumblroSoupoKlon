@@ -34,7 +34,7 @@ module ApplicationHelper
   end
 
   def get_username_with_caret
-    get_username + " <b class='caret'></b>"
+    '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> ' + get_username + " <b class='caret'></b>"
   end
 
   def get_login_logout_link
@@ -59,5 +59,9 @@ module ApplicationHelper
     link = link_to('Followers', new_user_registration_path)
     link = link_to('Followers', '/followers') if current_user
     link
+  end
+
+  def require_permission(post)
+    not current_user or post.user_id == current_user.id
   end
 end

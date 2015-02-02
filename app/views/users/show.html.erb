@@ -1,24 +1,36 @@
-<% if @user %>
-  <h1><%= @user.username %></h1>
-  <% if can_follow %>
-    <%= link_to 'Follow', '/follow/' + @user.id.to_s %><br>
-  <% elsif can_unfollow %>
-    <%= link_to 'Unfollow', '/unfollow/' + @user.id.to_s %><br>
-  <% end %>
+<div class="row">
+  <div class="col-lg-8">
+    <% if @user %>
+      <h2><%= @user.username %></h2>
 
-  Follows (<%= @user.follow_count %>): <% @user.all_following.each do |f| %>
-    <%= f.username %>
-  <% end %> <br>
-  Followers (<%= @user.followers_count %>): <% @user.followers.each do |f| %>
-    <%= f.username %>
-  <% end %>
-  <% if @user.posts %>
-    <% @user.posts.order(id: :desc).each do |post| %>
-      <%= render "posts/show", p: post %>
+      <% if @user.posts %>
+        <% @user.posts.order(id: :desc).each do |post| %>
+          <%= render "posts/show", p: post %>
+        <% end %>
+      <% else %>
+        No posts.
+      <% end %>
+    <% else %>
+      <h2>Sorry, user does not exist.</h2>
     <% end %>
-  <% else %>
-    No posts.
-  <% end %>
-<% else %>
-  <h1>Sorry, user does not exist.</h1>
-<% end %>
+  </div>
+  <div class="col-lg-4">
+    <div class="affix">
+      <% if @user %>
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= @user.username %><br>
+        Follows (<%= @user.follow_count %>): <% @user.all_following.each do |f| %>
+          <%= link_to f.username, '/user/' + f.username %>
+        <% end %> <br>
+        Followers (<%= @user.followers_count %>): <% @user.followers.each do |f| %>
+          <%= f.username %>
+        <% end %>
+        <br><br>
+        <% if can_follow %>
+          <%= link_to 'Follow', '/follow/' + @user.id.to_s %><br>
+        <% elsif can_unfollow %>
+          <%= link_to 'Unfollow', '/unfollow/' + @user.id.to_s %><br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

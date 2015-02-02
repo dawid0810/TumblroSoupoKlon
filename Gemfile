@@ -27,6 +27,7 @@ gem 'spring',        group: :development
 gem 'devise'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'paperclip-meta'
 
 gem 'deep_cloneable', '~> 2.0.2'
 

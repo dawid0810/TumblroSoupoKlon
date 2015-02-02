@@ -1,8 +1,15 @@
-<div class="post">
-  <h2><%= p.title %></h2>
-  <%= User.find(p.user_id).username %><br>
-
-  <%= show(order_stuff(p)) %>
-
-  <%= link_to 'Edit', edit_post_path(p) %>
+<div class="row">
+  <div class="col-lg-10">
+    <h3><%= p.title %></h3>
+    <%= show(order_stuff(p)) %>
+  </div>
+  <div class="col-lg-2">
+    <%= link_to User.find(p.user_id).username, '/user/' + User.find(p.user_id).username %><br><br>
+    <% if require_permission(p) %>
+      <div class="btn-group">
+        <%= link_to 'Edit', edit_post_path(p), class: "btn btn-info btn-xs" %>
+        <%= link_to '<span class="glyphicon glyphicon-trash"></span> Delete'.html_safe, post_path(p), method: :delete, class: "btn btn-danger btn-xs" %>
+      </div>
+    <% end %>
+  </div>
 </div>

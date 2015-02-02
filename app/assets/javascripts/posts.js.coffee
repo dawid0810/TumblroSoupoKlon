@@ -30,5 +30,5 @@ jQuery ->
   $('form').on 'click', '.copy_from_url', (event) ->
     event.preventDefault()
     $(this).next('input[type=file]').val("")
-    $('.upload_fields').hide()
-    $('.copy_from_url_fields').show()
+    $(this).parent().parent().hide()
+    $(this).parent().parent().siblings('.copy_from_url_fields').show()

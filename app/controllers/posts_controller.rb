@@ -58,7 +58,7 @@ class PostsController < ApplicationController
     end
 
     def require_permission
-      if @post.user_id != current_user.id
+      if not current_user or @post.user_id != current_user.id
         redirect_to root_path, flash: { alert: "Sorry, you are not allowed to do this" }
       end
     end

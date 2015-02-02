@@ -1,3 +1,9 @@
-<%= image_tag s.file.url(:medium) %><br>
-<%= s.source if s.source.blank? == false %><br>
-<%= linkify_hashtags s.caption if s.caption.blank? == false %><br>
+<div class="image" style="width: <%= s.file.width(:medium).to_s %>px;" >
+  <%= link_to (image_tag (s.file.url(:medium))), s.file.url %>
+  <% if s.source.present? %>
+    <p class="source"><%= link_to URI.join(s.source, "/").to_s, s.source %></p>
+  <% end %>
+</div>
+<div class="caption">
+  <%= linkify_hashtags s.caption if s.caption.present? %>
+</div>

@@ -1,2 +1,14 @@
-<h1>Showing post #<%= @post.id %></h1>
-<%= render "posts/show", p: @post %>
+<div class="row">
+  <div class="col-lg-8">
+    <% if @post %>
+      <h2>Showing post #<%= @post.id %></h2>
+      <%= render "posts/show", p: @post %>
+    <% else %>
+      <h2>No post</h2>
+    <% end %>
+  </div>
+  <div class="col-lg-4">
+    <div class="affix">Jakiś panel?<br>
+    </div>
+  </div>
+</div>
