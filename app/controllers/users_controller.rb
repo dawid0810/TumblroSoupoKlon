@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :followed, :followers]
   def show
+    get_user_posts
   end
 
   def follow
@@ -28,14 +29,19 @@ class UsersController < ApplicationController
       @user = current_user if current_user
       @user = User.where("username = ?", params[:username]).first if params[:username].present?
     end
+    def get_user_posts
+      @posts = @user.posts.order(id: :desc).paginate(:page => params[:page], :per_page => 10)
+    end
     def get_followed_users_posts
       @user.all_following.each do |f|
         @posts ||= f.posts
       end
+      @posts = @posts.order(id: :desc).paginate(:page => params[:page], :per_page => 10) if @posts
     end
     def get_followers_posts
       @user.followers.each do |f|
         @posts ||= f.posts
       end
+      @posts = @posts.order(id: :desc).paginate(:page => params[:page], :per_page => 10) if @posts
     end
 end

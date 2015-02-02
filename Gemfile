@@ -39,3 +39,5 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'autoprefixer-rails'
 
 gem 'bootstrap_form'
+
+gem 'will_paginate', '~> 3.0.6'

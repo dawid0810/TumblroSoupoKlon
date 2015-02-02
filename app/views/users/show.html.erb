@@ -4,9 +4,10 @@
       <h2><%= @user.username %></h2>
 
       <% if @user.posts.count > 0 %>
-        <% @user.posts.order(id: :desc).each do |post| %>
+        <% @posts.each do |post| %>
           <%= render "posts/show", p: post %>
         <% end %>
+        <%= will_paginate @posts %>
       <% else %>
         <h3>No posts.</h3>
       <% end %>

@@ -5,6 +5,7 @@
       <% @posts.order(id: :desc).each do |post| %>
         <%= render "posts/show", p: post %>
       <% end %>
+      <%= will_paginate @posts %>
     <% else %>
       No posts.
     <% end %>
