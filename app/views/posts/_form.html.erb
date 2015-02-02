@@ -1,29 +1,42 @@
 <%= bootstrap_form_for @post do |f| %>
   <% if @post.errors.any? %>
-    <div class="error_messages">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-      <ul>
-        <% @post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <div class="alert alert-dismissable alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+          <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3"></div>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.text_field :title, hide_label: :true, placeholder: "Title" %>
+  <div class="row">
+    <div class="col-lg-8 form_to_append">
+      <div class="field">
+        <%= f.text_field :title, hide_label: :true, placeholder: "Title" %>
+      </div>
+      <% order_stuff(@post).each do |s| %>
+        <% if s.kind_of?(Note) %>
+          <%= f.fields_for :notes, s do |f2| %>
+          <%= render "notes/fields", f: f2 %>
+          <% end %>
+        <% elsif s.kind_of?(Image) %>
+          <%= f.fields_for :images, s do |f2| %>
+            <%= render 'images/fields', f: f2 %>
+          <% end %>
+        <% end %>
+        <br>
+      <% end %>
+    </div>
+    <div class="col-lg-4 text-center">
+      <%= render 'add_fields', f: f %>
+      <%= f.submit "Submit", class: "btn btn-success" %>
+    </div>
   </div>
-  <% order_stuff(@post).each do |s| %>
-    <% if s.kind_of?(Note) %>
-      <%= f.fields_for :notes, s do |f2| %>
-      <%= render "notes/fields", f: f2 %>
-      <% end %>
-    <% elsif s.kind_of?(Image) %>
-      <%= f.fields_for :images, s do |f2| %>
-        <%= render 'images/fields', f: f2 %>
-      <% end %>
-    <% end %>
-    <br>
-  <% end %>
-  <%= render 'add_fields', f: f %>
-  <%= f.submit "Submit", class: "btn btn-success" %>
 <% end %>

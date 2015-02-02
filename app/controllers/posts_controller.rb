@@ -21,7 +21,12 @@ class PostsController < ApplicationController
       kopy.file = File.new filename if kopy.is_a?(Image) and File.exists?(filename)
     end
     @post.post_id = post_to_dup.id
+    @post.user_id = current_user.id
     @post.save
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit

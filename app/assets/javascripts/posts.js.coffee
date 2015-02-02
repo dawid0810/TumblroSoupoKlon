@@ -3,32 +3,36 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  $('form').on 'click', '.remove_fields', (event) ->
+  $(document).on 'click', '.remove_fields', (event) ->
     event.preventDefault()
     $(this).prev('input[type=hidden]').val('true')
     $(this).closest('fieldset').hide()
     $(this).closest('fieldset').prev('.undo_remove').show()
 
-  $('form').on 'click', '.add_fields', (event) ->
+  $(document).on 'click', '.add_fields', (event) ->
     event.preventDefault()
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
-    $(".actions").before($(this).data('fields').replace(regexp, time))
+    $(".form_to_append").append($(this).data('fields').replace(regexp, time))
     $("[id$=" + time.toString() + "_order]").val(time)
+    $(".repost_submit_button").removeClass("disabled");
 
-  $('form').on 'click', '.undo_remove', (event) ->
+  $(document).on 'click', '.undo_remove', (event) ->
     event.preventDefault()
     $(this).next('fieldset').children('input[type=hidden]').val('false')
     $(this).next('fieldset').show()
     $(this).hide()
 
-  $('form').on 'click', '.add_source_or_caption', (event) ->
+  $(document).on 'click', '.add_source_or_caption', (event) ->
     event.preventDefault()
     $(this).next('div.field').show()
     $(this).hide()
 
-  $('form').on 'click', '.copy_from_url', (event) ->
+  $(document).on 'click', '.copy_from_url', (event) ->
     event.preventDefault()
     $(this).next('input[type=file]').val("")
     $(this).parent().parent().hide()
     $(this).parent().parent().siblings('.copy_from_url_fields').show()
+
+  $(document).on 'click', '.repost_submit_button', ->
+    $("#repostModal").modal('hide')

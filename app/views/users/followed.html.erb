@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-8">
+  <div class="col-lg-9">
     <% if @user %>
       <h2>Followed by <%= @user.username %></h2>
 
@@ -15,7 +15,7 @@
       <h2>Sorry, user does not exist.</h2>
     <% end %>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <div class="affix menu_right">
       <%= link_to 'New', new_post_path %><br>
     </div>

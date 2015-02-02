@@ -17,7 +17,7 @@
   </div>
   <%= link_to "+caption", "#", class: "add_source_or_caption" %>
   <div class="field" style="display: none">
-    <%= f.text_field :caption, hide_label: :true, placeholder: "Caption" %>
+    <%= f.text_field :caption, hide_label: :true, placeholder: "Caption", help: "You can use #hashtags here" %>
   </div>
   <%= f.hidden_field :_destroy %>
   <%= link_to "Remove this file", '#', class: "remove_fields" %>

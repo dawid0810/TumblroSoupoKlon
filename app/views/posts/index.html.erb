@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-8">
+  <div class="col-lg-9">
     <h2>Everyone</h2>
     <% if @posts %>
       <% @posts.order(id: :desc).each do |post| %>
@@ -9,7 +9,7 @@
       No posts.
     <% end %>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <div class="affix menu_right">
       <%= link_to 'New post', new_post_path, class: "btn btn-success" %><br>
     </div>

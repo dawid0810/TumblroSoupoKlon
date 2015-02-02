@@ -14,6 +14,25 @@
 //= require jquery_ujs
 //= require_tree .
 
+
 function setActive(name) {
     $("#" + name).addClass("active");
 }
+
+$(document).ready(
+    function(){
+        $(".repost_button")
+            .bind("ajax:beforeSend",function(){
+                $("#repostBody").html("<p>loading...</p>");
+            })
+            .bind("ajax:complete", function(evt, data, status, xhr){
+                $("#repostBody").html(data.responseText);
+            }
+        );
+        $(".repost_button").click(function(event){
+            event.preventDefault();
+            $(this).addClass("disabled");
+            $(this).text("Reposted");
+        });
+    }
+);

@@ -5,7 +5,7 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render(association.to_s + "/fields", f: builder)
     end
-    link_to(name, '#', class: 'add_fields', data: {id: id, fields: fields.gsub('\n', '')})
+    link_to(name, '#', class: 'add_fields btn btn-info', data: {id: id, fields: fields.gsub('\n', '')})
   end
 
   def order_stuff(post)
@@ -58,6 +58,12 @@ module ApplicationHelper
   def get_followers_link
     link = link_to('Followers', new_user_registration_path)
     link = link_to('Followers', '/followers') if current_user
+    link
+  end
+
+  def get_repost_button(post)
+    link = link_to('Repost', new_user_registration_path, class: "btn btn-success")
+    link = link_to('Repost', '/repost/' + post.id.to_s, class: "btn btn-success repost_button", remote: true, data: { toggle: "modal", target: "#repostModal"}) if current_user
     link
   end
 

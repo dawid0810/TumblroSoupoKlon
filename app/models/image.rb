@@ -4,7 +4,7 @@ class Image < ActiveRecord::Base
   include SimpleHashtag::Hashtaggable
   hashtaggable_attribute :caption
 
-  has_attached_file :file, styles: { medium: "500x500>" }
+  has_attached_file :file, styles: { medium: "600x600>" }
   validates_attachment_content_type :file, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_attachment_size :file, :less_than => 2.megabytes
 

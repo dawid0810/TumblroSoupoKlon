@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-8">
+  <div class="col-lg-9">
     <% if @user %>
       <h2><%= @user.username %></h2>
 
@@ -14,7 +14,7 @@
       <h2>Sorry, user does not exist.</h2>
     <% end %>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <div class="affix menu_right">
       <% if @user %>
         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= @user.username %><br>

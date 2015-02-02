@@ -48,6 +48,18 @@
   </div>
 </div>
 
+<div class="modal fade" id="repostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Reposted</h4>
+      </div>
+      <div id="repostBody">
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <div class="row">
@@ -69,7 +81,7 @@
     <div class="col-lg-3"></div>
   </div>
   <%= yield %>
-  <div class="row">
+  <div class="row margin_footer">
     <div class="col-lg-12 modal-footer">
       &copy;TumblroSoupoKlon
     </div>

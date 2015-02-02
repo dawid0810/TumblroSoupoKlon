@@ -51,7 +51,19 @@ div.caption {
   margin-bottom: 10px;
 }
 .menu_right {
+  margin: 20px;
   margin-top: 30px;
+}
+.post {
+  background-color: #f7f7f7;
+  margin: 10px;
+}
+.details {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.margin_footer {
+  margin-top: 20px;
 }
 
 
@@ -5835,11 +5847,12 @@ button.close {
 .modal-body {
   position: relative;
   padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
 }
 .modal-footer {
   padding: 20px;
   text-align: right;
-  border-top: 1px solid #e5e5e5;
+  border-top: none;
 }
 .modal-footer .btn + .btn {
   margin-left: 5px;
