@@ -50,8 +50,24 @@
 
 
 <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+      <% if alert %>
+        <div class="alert alert-dismissable alert-danger">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <%= alert %>
+        </div>
+      <% end %>
+      <% if notice %>
+        <div class="alert alert-dismissable alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <%= notice %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
   <%= yield %>
   <div class="row">
     <div class="col-lg-12 modal-footer">
