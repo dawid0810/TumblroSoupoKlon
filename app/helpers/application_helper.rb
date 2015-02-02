@@ -62,6 +62,6 @@ module ApplicationHelper
   end
 
   def require_permission(post)
-    not current_user or post.user_id == current_user.id
+    current_user and (current_user.admin? or post.user_id == current_user.id)
   end
 end
