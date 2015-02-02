@@ -1,0 +1,6 @@
+$(".pagination").before('<% @posts.order(id: :desc).each do |post| %><%= render("posts/show", p: post).gsub(/\n/, "").html_safe %><% end %>');
+<% if @posts.next_page %>
+$('.pagination').replaceWith('<%= j will_paginate(@posts) %>');
+<% else %>
+$('.pagination').text("The end.");
+<% end %>
