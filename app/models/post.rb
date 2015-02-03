@@ -7,4 +7,12 @@ class Post < ActiveRecord::Base
 
   accepts_nested_attributes_for :notes, reject_if: proc { |n| n[:body].blank? }, allow_destroy: true
   accepts_nested_attributes_for :images, reject_if: proc { |n| n[:file].blank? && n[:url].blank? }, allow_destroy: true
+
+  validate :not_empty
+
+  def not_empty
+    if self.notes.empty? && self.images.empty?
+      errors[:base] << ('Empty post is not valid.')
+    end
+  end
 end

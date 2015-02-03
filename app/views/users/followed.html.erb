@@ -2,7 +2,6 @@
   <div class="col-lg-9">
     <% if @user %>
       <h2>Followed by <%= @user.username %></h2>
-
       <% if @posts %>
         <% @posts.order(id: :desc).each do |post| %>
           <%= render "posts/show", p: post %>
@@ -18,7 +17,7 @@
   </div>
   <div class="col-lg-3">
     <div class="affix menu_right">
-      <%= link_to 'New', new_post_path %><br>
+      <%= link_to 'New post', new_post_path, class: "btn btn-success" %>
     </div>
   </div>
 </div>

@@ -13,8 +13,11 @@
   <div class="col-lg-4">
     <div class="affix menu_right">
       <% @hashtags.each do |hashtag| %>
-        <%= link_to hashtag.name, hashtag_path(hashtag.name) %>
+        <%= link_to hashtag.name, hashtag_path(hashtag.name) %> <%#= hashtag.hashtaggables.count %>
       <% end -%>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+    setActive("li-hashtags");
+</script>
