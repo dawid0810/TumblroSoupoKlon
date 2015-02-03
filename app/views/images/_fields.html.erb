@@ -7,7 +7,7 @@
     </div>
     <%= link_to "+source", "#", class: "add_source_or_caption" %>
     <div class="field" style="display: none">
-      <%= f.text_field :source, hide_label: :true, placeholder: "Source" %>
+      <%= f.url_field :source, hide_label: :true, placeholder: "Source http://" %>
     </div>
   </div>
   <div class="copy_from_url_fields">
@@ -22,4 +22,5 @@
   <%= f.hidden_field :_destroy %>
   <%= link_to "Remove this file", '#', class: "remove_fields" %>
   <%= f.hidden_field :order%>
+  <%= f.hidden_field :np, value: np %>
 </fieldset>

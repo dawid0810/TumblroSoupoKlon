@@ -17,4 +17,9 @@ class Image < ActiveRecord::Base
       self.source = u
     end
   end
+
+  def np
+  end
+  def np=(np)
+  end
 end

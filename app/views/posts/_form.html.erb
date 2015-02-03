@@ -21,17 +21,20 @@
       <div class="field">
         <%= f.text_field :title, hide_label: :true, placeholder: "Title" %>
       </div>
-      <% order_stuff(@post).each do |s| %>
-        <% if s.kind_of?(Note) %>
-          <%= f.fields_for :notes, s do |f2| %>
-          <%= render "notes/fields", f: f2 %>
+      <% ordered = order_stuff(@post) %>
+      <% if ordered.empty? == false %>
+        <% ordered.each do |s| %>
+          <% if s.kind_of?(Note) %>
+            <%= f.fields_for :notes, s do |f2| %>
+            <%= render "notes/fields", f: f2 %>
+            <% end %>
+          <% elsif s.kind_of?(Image) %>
+            <%= f.fields_for :images, s do |f2| %>
+              <%= render 'images/fields', f: f2, np: false %>
+            <% end %>
           <% end %>
-        <% elsif s.kind_of?(Image) %>
-          <%= f.fields_for :images, s do |f2| %>
-            <%= render 'images/fields', f: f2 %>
-          <% end %>
+          <br>
         <% end %>
-        <br>
       <% end %>
     </div>
     <div class="col-lg-4 text-center">
