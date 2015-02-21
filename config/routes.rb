@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :posts
 
   get '/repost/:id', to: 'posts#repost'
+  get '/quick_repost/:id', to: 'posts#quick_repost'
   get '/user/:username', to: 'users#show'
   get '/user/:username/post/:id', to: 'posts#show'
   get '/everyone', to: "posts#index"

@@ -61,10 +61,16 @@ module ApplicationHelper
     link
   end
 
-  def get_repost_button(post)
+  def get_repost_link(post)
     link = link_to('Repost', new_user_registration_path, class: "btn btn-success")
-    link = link_to('Repost', '/repost/' + post.id.to_s, class: "btn btn-success repost_button", remote: true, data: { toggle: "modal", target: "#repostModal"}) if current_user
+    link = link_to('Repost', '/repost/' + post.id.to_s, class: "btn btn-success repost_button btn-sm", remote: true) + link_to('+', '/repost/' + post.id.to_s,
+                   class: "btn btn-success repost_button btn-sm", remote: true,
+                   data: { toggle: "modal", target: "#repostModal"}) if current_user
     link
+  end
+
+  def get_repost_button(post)
+    '<div class="btn-group">' + get_repost_link(post) + '</div>'
   end
 
   def require_permission(post)

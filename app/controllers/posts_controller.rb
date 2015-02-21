@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :repost]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :quick_repost, :repost]
   before_action :require_permission, only: [:edit, :update, :destroy]
 
   def index
@@ -18,15 +18,20 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def repost
+  def quick_repost
     post_to_dup = Post.find(params[:id])
     @post = post_to_dup.deep_clone :include => [ :notes, :images ] do |original, kopy|
-      filename = Rails.root.join('public', 'system', 'images', 'files', original.id.to_s.rjust(9, '0').scan(/.../).join('/'), 'original', kopy.file_file_name) if kopy.is_a?(Image)
-      kopy.file = File.new filename if kopy.is_a?(Image) and File.exists?(filename)
+      # filename = Rails.root.join('images', 'files', original.id.to_s.rjust(9, '0').scan(/.../).join('/'), 'original', kopy.file_file_name) if kopy.is_a?(Image)
+      # kopy.file = File.new filename if kopy.is_a?(Image) and File.exists?(filename)
+      kopy.file = original.file if kopy.is_a?(Image)
     end
     @post.post_id = post_to_dup.id
     @post.user_id = current_user.id
     @post.save
+  end
+
+  def repost
+    quick_repost
     respond_to do |format|
       format.html
       format.js

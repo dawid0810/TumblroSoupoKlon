@@ -33,6 +33,7 @@ $(document).ready(
             event.preventDefault();
             $(this).addClass("disabled");
             $(this).text("Reposted");
+            $(this).siblings().remove();
         });
     }
 );
