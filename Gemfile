@@ -41,3 +41,5 @@ gem 'autoprefixer-rails'
 gem 'bootstrap_form'
 
 gem 'will_paginate', '~> 3.0.6'
+
+gem 'aws-sdk'
